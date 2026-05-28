@@ -18,7 +18,17 @@ function getUserData(userId) {
    *
    *  Jika ada salah satu Promise yang rejected, kembalikan fungsi ini dengan nilai `null`.
    */
-
+  return Promise.all([
+    getUserInfo(userId),
+    getUserOrders(userId),
+    getUserCartItems(userId),
+  ])
+    .then(([userInfo, userOrders, userCartItems]) => ({
+      userInfo,
+      userOrders,
+      userCartItems,
+    }))
+    .catch(() => null);
 }
 
 function main() {
