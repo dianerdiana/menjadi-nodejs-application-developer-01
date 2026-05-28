@@ -5,9 +5,11 @@ class UniqueArray extends Array {
   }
 
   push(...values) {
-    const newValues = [...new Set(values)];
-    super.push(...newValues);
+    const uniqueValues = [...new Set(values)].filter(
+      (value) => !this.includes(value),
+    );
+    return super.push(...uniqueValues);
   }
 }
 
-// @TODO: ekspor class UniqueArray
+export default UniqueArray;
